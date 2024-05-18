@@ -1,6 +1,8 @@
 import streamlit as st
 import joblib
 import pandas as pd
+import tensorflow as tf
+import keras
 st.write("#  CheckInsta ")
 col1, col2, col3 = st.columns(3)
 
@@ -50,8 +52,8 @@ df_pred['external URL'] = df_pred['external URL'].apply(lambda x: 1 if x == 'Yes
 df_pred['private'] = df_pred['private'].apply(lambda x: 1 if x == 'Yes' else 0)
 
 
-model = joblib.load('fake_insta_model.pkl')
-prediction = model.predict(df_pred)
+model1 = keras.models.load_model("model.keras")
+prediction = model1.predict(df_pred)
 
 
 if st.button('Check',key="1"):
